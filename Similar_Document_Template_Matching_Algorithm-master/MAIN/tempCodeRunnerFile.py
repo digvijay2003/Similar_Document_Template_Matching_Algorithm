@@ -1,0 +1,1 @@
+ult = CHECK(document_type, image_path)

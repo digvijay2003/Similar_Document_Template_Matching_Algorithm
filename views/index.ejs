@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document List</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:w400;600&display=swap">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .document-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .document-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #fdfdfd;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .document-item:hover {
+      background-color: #f3f3f3;
+    }
+
+    .document-item img {
+      width: 70px;
+      height: 70px;
+      border-radius: 5px;
+      margin-right: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .document-item img:hover {
+      transform: scale(1.1);
+    }
+
+    .document-info {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Uploaded Documents</h1>
+    <ul class="document-list">
+      <% documents.forEach((document) => { %>
+      <li class="document-item">
+        <img src="<%= document.path %>" alt="<%= document.fileName %>">
+        <p class="document-info">
+          <%= document.fileName %> - Uploaded by: <%= document.user.username %> - Status: <%= document.status || 'Unknown' %>
+        </p>
+        <form action="/delete-document/<%= document._id %>" method="POST" style="margin: 0;">
+          <button type="submit" class="btn-delete">Delete</button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
