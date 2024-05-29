@@ -122,6 +122,6 @@ def OCR_MATCHING(document_type, image_path):
     if isinstance(extracted_text, str):
         classified = classify_document(extracted_text, keywords_dict[document_type], threshold)
 
-        return [True, "ACCEPTED !!!"] if classified else [False, "REJECTED !!! REASON : IMAGE NOT MATCHED DURING OCR MATCHING ! "]
+        return [True, "ACCEPTED !!!"] if classified else [False, "REJECTED !!! REASON : IMAGE NOT MATCHED "]
     else:
         return [False, extracted_text]
